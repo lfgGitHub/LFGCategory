@@ -1,0 +1,16 @@
+PODS:
+  - LFGCategory (1.0.0)
+
+DEPENDENCIES:
+  - LFGCategory (from `../`)
+
+EXTERNAL SOURCES:
+  LFGCategory:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LFGCategory: bb34209100d0658679b67459a6ca1f85084a4e2d
+
+PODFILE CHECKSUM: adef492543abbefaf6aaf28e3b254ca242c1ac9c
+
+COCOAPODS: 1.9.3

@@ -1,0 +1,6 @@
+framework module Pods_LFGCategory_Tests {
+  umbrella header "Pods-LFGCategory_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
