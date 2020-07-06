@@ -30,6 +30,7 @@
 #import "NSObject+Aspect.h"
 #import "NSObject+Coding.h"
 #import "NSObject+Reflect.h"
+#import "NSObject+Router.h"
 #import "NSObject+Swizzle.h"
 #import "NSString+AppInfo.h"
 #import "NSString+Encrypt.h"
