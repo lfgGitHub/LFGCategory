@@ -16,32 +16,28 @@ static NSString *const kButtonDisabledImageKey = @"kButtonDisabledImageKey";
 static UIImageView *loadingImageView;
 static CABasicAnimation *animation;
 
-///不会缓存在内存中,使用次数较少时候使用
-static inline UIImage* GTIMGBundleName(NSString *imageName){
-    CGFloat scale = UIScreen.mainScreen.scale;
-    NSString *imgName = [NSString stringWithFormat:@"%@@%dx",imageName,(int)scale];
-    NSString *type = [imageName containsString:@"png"] ? @"png" : @"jpg";
-    NSString *path = [[NSBundle mainBundle] pathForResource:imgName ofType:type];
-    if(!path)
-    {
-        imgName = [imgName stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%d",(int)scale] withString:[NSString stringWithFormat:@"%d",scale == 3 ? 2 : 3]];
-        path = [[NSBundle mainBundle] pathForResource:imgName ofType:type];
-    }
-    return [[UIImage imageWithContentsOfFile:path] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-}
-
 @interface UIButton ()
 
 @end
 
 @implementation UIButton (Indicator)
 
+///设置加载图片
+- (void)setLoadingImage:(UIImage *)image {
+    
+    if (!loadingImageView) {
+        UIImageView *loadingImageV = [[UIImageView alloc] initWithImage:image];
+        loadingImageView = loadingImageV;
+    }else {
+        loadingImageView.image = image;
+    }
+}
 
 /// 显示加载器
 - (void)showIndicator {
 
     if (!loadingImageView) {
-        UIImageView *loadingImageV = [[UIImageView alloc] initWithImage:GTIMGBundleName(@"general_loading_white")];
+        UIImageView *loadingImageV = [[UIImageView alloc] init];
         loadingImageView = loadingImageV;
     }
     if (!animation) {
@@ -58,7 +54,6 @@ static inline UIImage* GTIMGBundleName(NSString *imageName){
     UIImage *normalBgImage = [self backgroundImageForState:UIControlStateNormal];
     UIImage *disabledImage = [self backgroundImageForState:UIControlStateDisabled];
     
-//    objc_setAssociatedObject(self, &KLoadingViewKey, loadingImageView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     objc_setAssociatedObject(self, &kButtonTextKey, currentButtonText, OBJC_ASSOCIATION_COPY_NONATOMIC);
     objc_setAssociatedObject(self, &kButtonDisabledImageKey, disabledImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -68,16 +63,14 @@ static inline UIImage* GTIMGBundleName(NSString *imageName){
     
     [self addSubview:loadingImageView];
     loadingImageView.center = self.center;
-//    [loadingImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.mas_equalTo(self);
-//    }];
+
 }
 
 /// 隐藏加载器
 - (void)hideIndicator {
     
     NSString *currentButtonText = (NSString *)objc_getAssociatedObject(self, &kButtonTextKey);
-//    UIImageView *loadingImageView = (UIImageView *)objc_getAssociatedObject(self, &KLoadingViewKey);
+
     UIImage *disabledImage = (UIImage *)objc_getAssociatedObject(self, &kButtonDisabledImageKey);
     
     [loadingImageView removeFromSuperview];

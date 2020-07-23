@@ -22,7 +22,7 @@ typedef void(^DataBlock)(NSData  *resultData);
  *
  *  @return 压缩得到的图片Data
  */
-+ (NSData *)CompressToDataWithImage:(UIImage *)OldImage
++ (NSData *)compressToDataWithImage:(UIImage *)OldImage
                           ShowSize:(CGSize)ShowSize
                           FileSize:(NSInteger)FileSize;
 /**
@@ -34,7 +34,7 @@ typedef void(^DataBlock)(NSData  *resultData);
  *
  *  @return 压缩得到的UIImage
  */
-+ (UIImage *)CompressToImageWithImage:(UIImage *)OldImage
++ (UIImage *)compressToImageWithImage:(UIImage *)OldImage
                             ShowSize:(CGSize)ShowSize
                             FileSize:(NSInteger)FileSize;
 
@@ -49,7 +49,7 @@ typedef void(^DataBlock)(NSData  *resultData);
  *  @param FileSize  文件大小限制
  *  @param DataBlock 压缩成功后返回的block
  */
-+ (void)CompressToDataAtBackgroundWithImage:(UIImage *)OldImage
++ (void)compressToDataAtBackgroundWithImage:(UIImage *)OldImage
                                   ShowSize:(CGSize)ShowSize
                                   FileSize:(NSInteger)FileSize
                                      block:(DataBlock)DataBlock;
@@ -64,7 +64,7 @@ typedef void(^DataBlock)(NSData  *resultData);
  *  @param FileSize 文件大小限制
  *  @param ImgBlock 压缩成功后返回的block
  */
-+ (void)CompressToImageAtBackgroundWithImage:(UIImage *)OldImage
++ (void)compressToImageAtBackgroundWithImage:(UIImage *)OldImage
                                    ShowSize:(CGSize)ShowSize
                                    FileSize:(NSInteger)FileSize
                                       block:(ImgBlock)ImgBlock;
@@ -74,7 +74,7 @@ typedef void(^DataBlock)(NSData  *resultData);
  * 优点：不影响分辨率，不太影响清晰度
  * 缺点：存在最小限制，可能压不到目标大小
  */
-+ (UIImage *)OnlyCompressToImageWithImage:(UIImage *)OldImage
++ (UIImage *)onlyCompressToImageWithImage:(UIImage *)OldImage
                                  FileSize:(NSInteger)FileSize;
 
 /**------只压不缩--按NSData大小压缩，返回NSData
@@ -82,7 +82,7 @@ typedef void(^DataBlock)(NSData  *resultData);
  * 缺点：存在最小限制，可能压不到目标大小
  * 默认PNG
  */
-+ (NSData *)OnlyCompressToDataWithImage:(UIImage *)OldImage
++ (NSData *)onlyCompressToDataWithImage:(UIImage *)OldImage
                                FileSize:(NSInteger)FileSize;
 
 
@@ -92,9 +92,8 @@ typedef void(^DataBlock)(NSData  *resultData);
  * 若Scale为YES，则原图会根据Size进行拉伸-会变形
  * 若Scale为NO，则原图会根据Size进行填充-不会变形
  */
-+ (UIImage *)ResizeImageWithImage:(UIImage *)OldImage
-                         andSize:(CGSize)Size
-                           Scale:(BOOL)Scale;
++ (UIImage *)resizeImageWithImage:(UIImage *)OldImage
+                         andSize:(CGSize)Size scale:(BOOL)scale;
 
 
 @end

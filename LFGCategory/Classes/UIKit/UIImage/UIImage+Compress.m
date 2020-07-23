@@ -10,46 +10,46 @@
 
 @implementation UIImage (Compress)
 #pragma mark --------前台压缩（可能比较慢，造成当前进程卡住）
-+ (NSData *)CompressToDataWithImage:(UIImage *)OldImage
++ (NSData *)compressToDataWithImage:(UIImage *)OldImage
                           ShowSize:(CGSize)ShowSize
                           FileSize:(NSInteger)FileSize{
     UIImage *oldIMG = OldImage;
-    UIImage *thumIMG = [self ResizeImageWithImage:oldIMG
+    UIImage *thumIMG = [self resizeImageWithImage:oldIMG
                                           andSize:ShowSize
-                                            Scale:NO];
-    NSData  *outIMGData = [self OnlyCompressToDataWithImage:thumIMG
+                                            scale:NO];
+    NSData  *outIMGData = [self onlyCompressToDataWithImage:thumIMG
                                                    FileSize:(FileSize*1024)];
     CGSize scalesize = ShowSize;
     //如果压缩后还是无法达到文件大小，则降低分辨率，继续压缩
     while (outIMGData.length>(FileSize*1024)) {
         scalesize = CGSizeMake(scalesize.width*0.8, scalesize.height*0.8);
-        thumIMG = [self ResizeImageWithImage:oldIMG
+        thumIMG = [self resizeImageWithImage:oldIMG
                                      andSize:scalesize
-                                       Scale:NO];
-        outIMGData = [self OnlyCompressToDataWithImage:thumIMG
+                                       scale:NO];
+        outIMGData = [self onlyCompressToDataWithImage:thumIMG
                                               FileSize:(FileSize*1024)];
     }
     return outIMGData;
 }
 
-+ (UIImage *)CompressToImageWithImage:(UIImage *)OldImage
++ (UIImage *)compressToImageWithImage:(UIImage *)OldImage
                             ShowSize:(CGSize)ShowSize
                             FileSize:(NSInteger)FileSize{
     UIImage *oldIMG = OldImage;
-    UIImage *thumIMG = [self ResizeImageWithImage:oldIMG
+    UIImage *thumIMG = [self resizeImageWithImage:oldIMG
                                           andSize:ShowSize
-                                            Scale:NO];
-    UIImage *outIMG = [self OnlyCompressToImageWithImage:thumIMG
+                                            scale:NO];
+    UIImage *outIMG = [self onlyCompressToImageWithImage:thumIMG
                                                 FileSize:(FileSize*1024)];
     NSData * newimageData = UIImageJPEGRepresentation(outIMG,1);
     CGSize scalesize = ShowSize;
     //如果压缩后还是无法达到文件大小，则降低分辨率，继续压缩
     while ([newimageData length]>(FileSize*1024)) {
         scalesize = CGSizeMake(scalesize.width*0.8, scalesize.height*0.8);
-        thumIMG = [self ResizeImageWithImage:outIMG
+        thumIMG = [self resizeImageWithImage:outIMG
                                      andSize:scalesize
-                                       Scale:NO];
-        outIMG = [self OnlyCompressToImageWithImage:thumIMG
+                                       scale:NO];
+        outIMG = [self onlyCompressToImageWithImage:thumIMG
                                            FileSize:(FileSize*1024)];
         newimageData = UIImageJPEGRepresentation(outIMG,1);
     }
@@ -59,12 +59,12 @@
 
 
 #pragma mark --------后台压缩（异步进行，不会卡住前台进程）
-+ (void)CompressToDataAtBackgroundWithImage:(UIImage *)OldImage
++ (void)compressToDataAtBackgroundWithImage:(UIImage *)OldImage
                                   ShowSize:(CGSize)ShowSize
                                   FileSize:(NSInteger)FileSize
                                      block:(DataBlock)DataBlock{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData *newIMGData = [self CompressToDataWithImage:OldImage
+        NSData *newIMGData = [self compressToDataWithImage:OldImage
                                                                  ShowSize:ShowSize
                                                                  FileSize:FileSize];
         DataBlock(newIMGData);
@@ -72,12 +72,12 @@
 }
 
 
-+ (void)CompressToImageAtBackgroundWithImage:(UIImage *)OldImage
++ (void)compressToImageAtBackgroundWithImage:(UIImage *)OldImage
                                    ShowSize:(CGSize)ShowSize
                                    FileSize:(NSInteger)FileSize
                                       block:(ImgBlock)ImgBlock{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        UIImage *newIMG = [self CompressToImageWithImage:OldImage
+        UIImage *newIMG = [self compressToImageWithImage:OldImage
                                                                ShowSize:ShowSize
                                                                FileSize:FileSize];
         ImgBlock(newIMG);
@@ -86,7 +86,7 @@
 
 
 #pragma mark --------细化调用方法
-+ (UIImage *)OnlyCompressToImageWithImage:(UIImage *)OldImage
++ (UIImage *)onlyCompressToImageWithImage:(UIImage *)OldImage
                                  FileSize:(NSInteger)FileSize{
     CGFloat compression    = 0.9f;
     CGFloat minCompression = 0.01f;
@@ -109,7 +109,7 @@
     return compressedImage;
 }
 
-+ (NSData *)OnlyCompressToDataWithImage:(UIImage *)OldImage
++ (NSData *)onlyCompressToDataWithImage:(UIImage *)OldImage
                                FileSize:(NSInteger)FileSize{
     CGFloat compression    = 1.0f;
     CGFloat minCompression = 0.001f;
@@ -133,9 +133,9 @@
 //------只缩不压
 //若Scale为YES，则原图会根据Size进行拉伸-会变形
 //若Scale为NO，则原图会根据Size进行填充-不会变形
-+(UIImage *)ResizeImageWithImage:(UIImage *)OldImage
++(UIImage *)resizeImageWithImage:(UIImage *)OldImage
                          andSize:(CGSize)Size
-                           Scale:(BOOL)Scale
+                           scale:(BOOL)scale
 {
     UIGraphicsBeginImageContextWithOptions(Size, NO, 0.0);
     
@@ -143,7 +143,7 @@
                              0,
                              Size.width,
                              Size.height);
-    if (!Scale) {
+    if (!scale) {
         
         CGFloat bili_imageWH = OldImage.size.width/
         OldImage.size.height;
