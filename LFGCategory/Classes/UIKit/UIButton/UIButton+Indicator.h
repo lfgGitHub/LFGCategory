@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIButton (Indicator)
 
 ///设置加载图片
-- (void)setLoadingImage:(UIImage *)image;
++ (void)setLoadingImage:(UIImage *)image;
 
 /// 显示加载器
 - (void)showIndicator;

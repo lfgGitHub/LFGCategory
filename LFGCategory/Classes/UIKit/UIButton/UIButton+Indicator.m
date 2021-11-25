@@ -23,7 +23,7 @@ static CABasicAnimation *animation;
 @implementation UIButton (Indicator)
 
 ///设置加载图片
-- (void)setLoadingImage:(UIImage *)image {
++ (void)setLoadingImage:(UIImage *)image {
     
     if (!loadingImageView) {
         UIImageView *loadingImageV = [[UIImageView alloc] initWithImage:image];
