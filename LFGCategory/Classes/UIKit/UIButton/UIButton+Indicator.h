@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 显示加载器
 - (void)showIndicator;
 
+/// 遮盖住
+-(void)showIndicatorBg;
+
 /// 隐藏加载器
 - (void)hideIndicator;
 

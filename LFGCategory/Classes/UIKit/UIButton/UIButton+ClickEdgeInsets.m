@@ -20,10 +20,13 @@
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
-    if (UIEdgeInsetsEqualToEdgeInsets(self.clickEdgeInsets, UIEdgeInsetsZero)){
+    
+    UIEdgeInsets clickEdgeInsets = UIEdgeInsetsMake(-self.clickEdgeInsets.top, -self.clickEdgeInsets.left, -self.clickEdgeInsets.bottom, -self.clickEdgeInsets.right);
+    
+    if (UIEdgeInsetsEqualToEdgeInsets(clickEdgeInsets, UIEdgeInsetsZero)){
         return [super pointInside:point withEvent:event];
     }else{
-        CGRect large = UIEdgeInsetsInsetRect(self.bounds, self.clickEdgeInsets);
+        CGRect large = UIEdgeInsetsInsetRect(self.bounds, clickEdgeInsets);
         return CGRectContainsPoint(large, point) ? YES : NO;
     }
 }
