@@ -1,5 +1,5 @@
 PODS:
-  - LFGCategory (1.0.0)
+  - LFGCategory (1.0.3)
 
 DEPENDENCIES:
   - LFGCategory (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LFGCategory: bb34209100d0658679b67459a6ca1f85084a4e2d
+  LFGCategory: 99a95d974d65289ee15e961775ee64f44dbe0ed2
 
-PODFILE CHECKSUM: adef492543abbefaf6aaf28e3b254ca242c1ac9c
+PODFILE CHECKSUM: 6abc92d2208840f14e1db3133df12639636acf32
 
 COCOAPODS: 1.9.3
