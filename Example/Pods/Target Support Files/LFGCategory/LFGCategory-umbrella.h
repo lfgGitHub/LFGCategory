@@ -114,7 +114,6 @@
 #import "UIViewController+Common.h"
 #import "UIViewController+RecursiveDescription.h"
 #import "UIViewController+Segues.h"
-#import "UIViewController+Swizzle.h"
 #import "UIViewController+TopViewController.h"
 
 FOUNDATION_EXPORT double LFGCategoryVersionNumber;
