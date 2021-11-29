@@ -501,12 +501,22 @@
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LFGCategory/LFGCategory-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public/LFGCategory\"",
+				);
 				INFOPLIST_FILE = "LFGCategory/LFGCategory-Info.plist";
 				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"LFGCategory\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 arm64e x86_64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -519,12 +529,22 @@
 				CURRENT_PROJECT_VERSION = 1.0.0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LFGCategory/LFGCategory-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public/LFGCategory\"",
+				);
 				INFOPLIST_FILE = "LFGCategory/LFGCategory-Info.plist";
 				MARKETING_VERSION = 1.0.0;
 				MODULE_NAME = ExampleApp;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"LFGCategory\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				VALID_ARCHS = "arm64 arm64e x86_64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
